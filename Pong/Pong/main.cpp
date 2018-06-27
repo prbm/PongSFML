@@ -26,15 +26,26 @@ int main(int argc, char **argv)
 
 	std::cout << "Criou objetos bola e bastao..." << std::endl;
 	
-	// Cria um objeto para mensagem de texto
+	// Cria objetos para as mensagens do jogo
 	Text hud;
+	Text gameOver;
 	// Fonte a ser usada
 	Font font;
 	font.loadFromFile("DS-DIGIT.TTF");
 	// define a fonte da mensagem, tamanho e cor
 	hud.setFont(font);
-	hud.setCharacterSize(34);
+	hud.setCharacterSize(40);
 	hud.setFillColor(sf::Color::White);
+	hud.setPosition(windowWidth/2-100, 1);
+	// define a mensagem e game over;
+	gameOver.setString("Game Over");
+	gameOver.setFont(font);
+	gameOver.setCharacterSize(150);
+	gameOver.setFillColor(sf::Color::Yellow);
+	// centraliza o texto na tela
+	gameOver.setOrigin(gameOver.getLocalBounds().left + gameOver.getLocalBounds().width/2.0f, 
+							gameOver.getLocalBounds().top + gameOver.getLocalBounds().height/2.0f);
+	gameOver.setPosition(windowWidth/2.0f,windowHeight/2.0f);
 
 	std::cout << "Carregou as fontes do jogo..." << std::endl;
 	
@@ -64,13 +75,7 @@ int main(int argc, char **argv)
 			bola.rebateuFundo();
 			
 			// remove uma vida
-			vida--;
-			
-			// tem menos de zero vidas?
-			if(vida < 1){
-				score = 0;
-				vida = 3;
-			}
+			vida--;	
 		}
 		
 		// a bola tocou o topo?
@@ -109,7 +114,15 @@ int main(int argc, char **argv)
 		window.draw(bola.getForma());
 		window.draw(hud);
 		
-		window.display();
+		// tem menos do que 0 vidas?
+		if(vida<=0){
+			window.draw(gameOver);
+			window.display();
+			sf::sleep(sf::milliseconds(3000));
+		}else{
+			window.display();
+		}
+
 	}
 	
 	return 0;
