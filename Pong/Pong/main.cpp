@@ -7,10 +7,15 @@
 
 using namespace sf;
 
-bool gameRunning = true;
+enum GameState{
+	RUNNING = 1,
+	PAUSED
+};
 
 int main(int argc, char **argv)
 {
+	// estado do jogo
+	int gameState = RUNNING;
 	// define a altura e a largura da janela
 	int windowWidth = 800;
 	int windowHeight = 600;
@@ -57,24 +62,22 @@ int main(int argc, char **argv)
 		// verifica os eventos de tela
 		Event event;
 		while(window.pollEvent(event)){
-			if(event.type==Event::Closed)
-				window.close();
-		}
-		
-		if(!gameRunning){
-			if(Keyboard::isKeyPressed(Keyboard::P)){
-				gameRunning = true;
-			}
-			else if(Keyboard::isKeyPressed(Keyboard::Escape)){
+			if(event.type==Event::Closed){
 				window.close();
 			}
-		}
-		
-		// verifica os eventos, enquanto o jogo estiver acontecendo
-		if(gameRunning){
-			if(Keyboard::isKeyPressed(Keyboard::P)){
-				gameRunning = false;
+			else if(event.type==Event::KeyPressed){
+				if(Keyboard::isKeyPressed(Keyboard::P)){
+					if(gameState==RUNNING)
+						gameState=PAUSED;
+					else
+						gameState=RUNNING;
+				}
 			}
+
+		}// poll event
+		
+		if(gameState==RUNNING){
+			// qual tecla está sendo usada?
 			if(Keyboard::isKeyPressed(Keyboard::Left)){
 				bastao.moverEsquerda();
 			}
@@ -84,6 +87,7 @@ int main(int argc, char **argv)
 			else if(Keyboard::isKeyPressed(Keyboard::Escape)){
 				window.close();
 			}
+
 
 			// a bola tocou o fundo?
 			if(bola.getPosicao().top > windowHeight){
@@ -147,9 +151,9 @@ int main(int argc, char **argv)
 				window.draw(bola.getForma());
 				window.display();
 			}
+			
+		} // if(gameState==RUNNING)
 
-		} // end while(gameRunning)
-		
 	} // while(window.isOpen())
 	
 	return 0;
