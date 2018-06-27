@@ -7,13 +7,16 @@ using namespace sf;
 class Bola
 {
 private:
+	// define as constantes
+	float const velocidadeIncial = 0.3f;
 	// posicao da bola
-	Vector2f posicao;
+	Vector2f posicaoInicial;
+	Vector2f posicaoAtual;
 	// forma de bola
 	RectangleShape formaBola;
 	// velocidades da bola
-	float velocidadeX = 0.3f;
-	float velocidadeY = 0.3f;
+	float velocidadeX = velocidadeIncial;
+	float velocidadeY = velocidadeIncial;
 	
 public:
 	// definicao do construtor
@@ -25,6 +28,9 @@ public:
 	// informa a forma da figura
 	RectangleShape getForma();
 	
+	// aumenta a velocidade da bola
+	void aumentarVelocidade();
+
 	// lê a velocidade X
 	float getVelocidadeX();
 	
@@ -39,6 +45,9 @@ public:
 	
 	// atualizar
 	void atualizar();
+	
+	// restaurar ao estado original
+	void restaurarOriginal();
 	
 	~Bola();
 

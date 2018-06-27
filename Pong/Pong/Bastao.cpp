@@ -3,6 +3,8 @@
 Bastao::Bastao(float inicioX, float inicioY)
 {	posicao.x = inicioX;
 	posicao.y = inicioY;
+	
+	posicaoInicial = posicao;
 
 	formaBastao.setSize(sf::Vector2f(50,5));
 	formaBastao.setPosition(posicao);
@@ -26,5 +28,10 @@ void Bastao::moverDireita(){
 
 void Bastao::atualizar(){
 	formaBastao.setPosition(posicao);
+}
+
+void Bastao::restaurarOriginal(){
+	posicao = posicaoInicial;
+	atualizar();
 }
 

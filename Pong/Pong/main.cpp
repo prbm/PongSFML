@@ -75,7 +75,9 @@ int main(int argc, char **argv)
 			bola.rebateuFundo();
 			
 			// remove uma vida
-			vida--;	
+			vida--;
+			// restaura a bola à posição inicial
+			bola.restaurarOriginal();
 		}
 		
 		// a bola tocou o topo?
@@ -84,6 +86,8 @@ int main(int argc, char **argv)
 			
 			// adiciona um ponto ao score
 			score++;
+			if(score%10==0)
+				bola.aumentarVelocidade();
 		}
 		
 		// a bola bateu em um dos lados?
@@ -100,18 +104,13 @@ int main(int argc, char **argv)
 		bola.atualizar();
 		bastao.atualizar();
 		
-		// atualizou as posições na tela
-		std::cout << "Atualizou bola e bastao..." << std::endl;
-		
 		// Atualiza o HUD
 		std::stringstream ss;
 		ss << "Score: " << score << " Vida: " << vida;
 		hud.setString(ss.str());
 		
 		// limpa o último frame
-		window.clear(Color(26, 128, 128, 255));
-		window.draw(bastao.getForma());
-		window.draw(bola.getForma());
+		window.clear(Color(0, 0, 0, 255));
 		window.draw(hud);
 		
 		// tem menos do que 0 vidas?
@@ -119,10 +118,19 @@ int main(int argc, char **argv)
 			window.draw(gameOver);
 			window.display();
 			sf::sleep(sf::milliseconds(3000));
+			score = 0;
+			vida = 3;
+			bola.restaurarOriginal();
+			bastao.restaurarOriginal();
+			window.draw(bastao.getForma());
+			window.draw(bola.getForma());
+			window.draw(hud);
+			window.display();
 		}else{
+			window.draw(bastao.getForma());
+			window.draw(bola.getForma());
 			window.display();
 		}
-
 	}
 	
 	return 0;

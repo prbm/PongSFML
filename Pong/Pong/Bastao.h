@@ -5,6 +5,7 @@ using namespace sf;
 class Bastao{
 private:
 	// posicao do bastao
+	Vector2f posicaoInicial;
 	Vector2f posicao;
 	// um objeto retangulo, a forma do bastao
 	RectangleShape formaBastao;
@@ -22,4 +23,6 @@ public:
 	void moverEsquerda();
 	void moverDireita();
 	void atualizar();
+	// restaura estado original
+	void restaurarOriginal();
 };
