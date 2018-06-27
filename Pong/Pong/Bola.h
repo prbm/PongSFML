@@ -48,6 +48,7 @@ public:
 	
 	// restaurar ao estado original
 	void restaurarOriginal();
+	void restaurarPosicaoOriginal();
 	
 	~Bola();
 

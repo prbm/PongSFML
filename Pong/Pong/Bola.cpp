@@ -54,6 +54,11 @@ void Bola::restaurarOriginal(){
 	atualizar();
 }
 
+void Bola::restaurarPosicaoOriginal(){
+	posicaoAtual = posicaoInicial;
+	atualizar();
+}
+
 Bola::~Bola()
 {
 }

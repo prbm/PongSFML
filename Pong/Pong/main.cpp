@@ -7,6 +7,8 @@
 
 using namespace sf;
 
+bool gameRunning = true;
+
 int main(int argc, char **argv)
 {
 	// define a altura e a largura da janela
@@ -59,79 +61,96 @@ int main(int argc, char **argv)
 				window.close();
 		}
 		
-		if(Keyboard::isKeyPressed(Keyboard::Left)){
-			bastao.moverEsquerda();
-		}
-		else if(Keyboard::isKeyPressed(Keyboard::Right)){
-			bastao.moverDireita();
-		}
-		else if(Keyboard::isKeyPressed(Keyboard::Escape)){
-			window.close();
-		}
-
-		// a bola tocou o fundo?
-		if(bola.getPosicao().top > windowHeight){
-			// reverte a direção da bola
-			bola.rebateuFundo();
-			
-			// remove uma vida
-			vida--;
-			// restaura a bola à posição inicial
-			bola.restaurarOriginal();
+		if(!gameRunning){
+			if(Keyboard::isKeyPressed(Keyboard::P)){
+				gameRunning = true;
+			}
+			else if(Keyboard::isKeyPressed(Keyboard::Escape)){
+				window.close();
+			}
 		}
 		
-		// a bola tocou o topo?
-		if(bola.getPosicao().top < 0){
-			bola.rebateuBastaoOuTopo();
-			
-			// adiciona um ponto ao score
-			score++;
-			if(score%10==0)
-				bola.aumentarVelocidade();
-		}
-		
-		// a bola bateu em um dos lados?
-		if(bola.getPosicao().left < 0 || bola.getPosicao().left + 10 > windowWidth){
-			bola.rebateuLados();
-		}
+		// verifica os eventos, enquanto o jogo estiver acontecendo
+		if(gameRunning){
+			if(Keyboard::isKeyPressed(Keyboard::P)){
+				gameRunning = false;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::Left)){
+				bastao.moverEsquerda();
+			}
+			else if(Keyboard::isKeyPressed(Keyboard::Right)){
+				bastao.moverDireita();
+			}
+			else if(Keyboard::isKeyPressed(Keyboard::Escape)){
+				window.close();
+			}
 
-		// a bola foi atingida pelo bastão?
-		if(bola.getPosicao().intersects(bastao.getPosicao())){
-			bola.rebateuBastaoOuTopo();
-		}
+			// a bola tocou o fundo?
+			if(bola.getPosicao().top > windowHeight){
+				// reverte a direção da bola
+				bola.rebateuFundo();
+			
+				// remove uma vida
+				vida--;
+				// restaura a bola à posição inicial
+				bola.restaurarPosicaoOriginal();
+			}
+		
+			// a bola tocou o topo?
+			if(bola.getPosicao().top < 0){
+				bola.rebateuBastaoOuTopo();
+			
+				// adiciona um ponto ao score
+				score++;
+				if(score%10==0)
+					bola.aumentarVelocidade();
+			}
+		
+			// a bola bateu em um dos lados?
+			if(bola.getPosicao().left < 0 || bola.getPosicao().left + 10 > windowWidth){
+				bola.rebateuLados();
+			}
+
+			// a bola foi atingida pelo bastão?
+			if(bola.getPosicao().intersects(bastao.getPosicao())){
+				bola.rebateuBastaoOuTopo();
+			}
 	
-		// atualiza as posições na tela
-		bola.atualizar();
-		bastao.atualizar();
+			// atualiza as posições na tela
+			bola.atualizar();
+			bastao.atualizar();
 		
-		// Atualiza o HUD
-		std::stringstream ss;
-		ss << "Score: " << score << " Vida: " << vida;
-		hud.setString(ss.str());
+			// Atualiza o HUD
+			std::stringstream ss;
+			ss << "Score: " << score << " Vida: " << vida;
+			hud.setString(ss.str());
 		
-		// limpa o último frame
-		window.clear(Color(0, 0, 0, 255));
-		window.draw(hud);
-		
-		// tem menos do que 0 vidas?
-		if(vida<=0){
-			window.draw(gameOver);
-			window.display();
-			sf::sleep(sf::milliseconds(3000));
-			score = 0;
-			vida = 3;
-			bola.restaurarOriginal();
-			bastao.restaurarOriginal();
-			window.draw(bastao.getForma());
-			window.draw(bola.getForma());
+			// limpa o último frame
+			window.clear(Color(21, 0, 0, 255));
 			window.draw(hud);
-			window.display();
-		}else{
-			window.draw(bastao.getForma());
-			window.draw(bola.getForma());
-			window.display();
-		}
-	}
+		
+			// tem menos do que 0 vidas?
+			if(vida<=0){
+				window.draw(gameOver);
+				window.display();
+				sf::sleep(sf::milliseconds(3000));
+				score = 0;
+				vida = 3;
+				bola.restaurarOriginal();
+				bastao.restaurarOriginal();
+				window.draw(bastao.getForma());
+				window.draw(bola.getForma());
+				window.draw(hud);
+				window.display();
+			}else{
+				window.draw(bastao.getForma());
+				window.draw(bola.getForma());
+				window.display();
+			}
+
+		} // end while(gameRunning)
+		
+	} // while(window.isOpen())
 	
 	return 0;
 }
