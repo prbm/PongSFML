@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 	gameOver.setPosition(windowWidth/2.0f,windowHeight/2.0f-100);
 
 	// define as opções de teclas durante o Game Over
-	keyOptions.setString("Press\nENTER to continue\nESC to exit");
+	keyOptions.setString("ENTER -> continue\nESC -> exit");
 	keyOptions.setFont(font);
 	keyOptions.setCharacterSize(30);
 	keyOptions.setFillColor(sf::Color::Yellow);
