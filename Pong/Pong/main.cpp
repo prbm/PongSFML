@@ -9,33 +9,38 @@ using namespace sf;
 
 enum GameState{
 	RUNNING = 1,
-	PAUSED
+	PAUSED,
+	FINISHED
+	
 };
+
+
+// estado do jogo
+int gameState = RUNNING;
+// define a altura e a largura da janela
+int windowWidth = 800;
+int windowHeight = 600;
+
+int score;
+int vida;
+// cria um bastão
+Bastao bastao( windowWidth/2, windowHeight-20);
+// cria uma bola
+Bola bola( windowWidth/2, 1);
+
+void startGame();
 
 int main(int argc, char **argv)
 {
-	// estado do jogo
-	int gameState = RUNNING;
-	// define a altura e a largura da janela
-	int windowWidth = 800;
-	int windowHeight = 600;
-	
 	// Cria a janela renderizada com os tamanhos definidos acima
 	RenderWindow window(VideoMode(windowWidth, windowHeight), "Pong");
-
-	int score = 0;
-	int vida = 3;
-	
-	// cria um bastão
-	Bastao bastao( windowWidth/2, windowHeight-20);
-	// cria uma bola
-	Bola bola( windowWidth/2, 1);
 
 	std::cout << "Criou objetos bola e bastao..." << std::endl;
 	
 	// Cria objetos para as mensagens do jogo
 	Text hud;
 	Text gameOver;
+	Text keyOptions;
 	// Fonte a ser usada
 	Font font;
 	font.loadFromFile("DS-DIGIT.TTF");
@@ -54,9 +59,19 @@ int main(int argc, char **argv)
 							gameOver.getLocalBounds().top + gameOver.getLocalBounds().height/2.0f);
 	gameOver.setPosition(windowWidth/2.0f,windowHeight/2.0f);
 
+	// define as opções de teclas durante o Game Over
+	keyOptions.setString("Press\nENTER to continue\nESC to exit");
+	keyOptions.setFont(font);
+	keyOptions.setCharacterSize(30);
+	keyOptions.setFillColor(sf::Color::Yellow);
+	keyOptions.setOrigin(keyOptions.getLocalBounds().left + keyOptions.getLocalBounds().width/2.0f,
+							keyOptions.getLocalBounds().top + keyOptions.getLocalBounds().height);
+	keyOptions.setPosition(windowWidth/2.0f,windowHeight/2.0f + 2 * gameOver.getLocalBounds().height);
+	
 	std::cout << "Carregou as fontes do jogo..." << std::endl;
 	
 	// entrando no loop do jogo
+	startGame();
 	while(window.isOpen()){
 
 		// verifica os eventos de tela
@@ -71,6 +86,14 @@ int main(int argc, char **argv)
 						gameState=PAUSED;
 					else
 						gameState=RUNNING;
+				}
+				else if(Keyboard::isKeyPressed(Keyboard::Escape)){
+					window.close();
+				}else if(Keyboard::isKeyPressed(Keyboard::Return)){
+					if(gameState==FINISHED){
+						startGame();
+						gameState = RUNNING;
+					}
 				}
 			}
 
@@ -130,22 +153,15 @@ int main(int argc, char **argv)
 			hud.setString(ss.str());
 		
 			// limpa o último frame
-			window.clear(Color(21, 0, 0, 255));
+			window.clear(Color(0, 0, 0, 255));
 			window.draw(hud);
 		
 			// tem menos do que 0 vidas?
 			if(vida<=0){
 				window.draw(gameOver);
+				window.draw(keyOptions);
 				window.display();
-				sf::sleep(sf::milliseconds(3000));
-				score = 0;
-				vida = 3;
-				bola.restaurarOriginal();
-				bastao.restaurarOriginal();
-				window.draw(bastao.getForma());
-				window.draw(bola.getForma());
-				window.draw(hud);
-				window.display();
+				gameState = FINISHED;
 			}else{
 				window.draw(bastao.getForma());
 				window.draw(bola.getForma());
@@ -157,4 +173,12 @@ int main(int argc, char **argv)
 	} // while(window.isOpen())
 	
 	return 0;
+}
+
+void startGame(){
+	score = 0;
+	vida = 3;
+	
+	bastao.restaurarOriginal();
+	bola.restaurarOriginal();
 }
