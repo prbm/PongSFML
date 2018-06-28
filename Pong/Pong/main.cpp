@@ -38,17 +38,24 @@ int main(int argc, char **argv)
 	std::cout << "Criou objetos bola e bastao..." << std::endl;
 	
 	// Cria objetos para as mensagens do jogo
-	Text hud;
+	Text scoreHUD;
+	Text vidaHUD;
 	Text gameOver;
 	Text keyOptions;
 	// Fonte a ser usada
 	Font font;
 	font.loadFromFile("DS-DIGIT.TTF");
 	// define a fonte da mensagem, tamanho e cor
-	hud.setFont(font);
-	hud.setCharacterSize(40);
-	hud.setFillColor(sf::Color::White);
-	hud.setPosition(windowWidth/2-100, 1);
+	scoreHUD.setFont(font);
+	scoreHUD.setCharacterSize(40);
+	scoreHUD.setFillColor(sf::Color::Blue);
+	scoreHUD.setPosition(10, 1);
+	// define a HUD de vida
+	vidaHUD.setFont(font);
+	vidaHUD.setCharacterSize(40);
+	vidaHUD.setString("Vida: XX");
+	vidaHUD.setFillColor(sf::Color::Blue);
+	vidaHUD.setPosition(windowWidth - vidaHUD.getLocalBounds().width - 10, 1);
 	// define a mensagem e game over;
 	gameOver.setString("Game Over");
 	gameOver.setFont(font);
@@ -57,7 +64,7 @@ int main(int argc, char **argv)
 	// centraliza o texto na tela
 	gameOver.setOrigin(gameOver.getLocalBounds().left + gameOver.getLocalBounds().width/2.0f, 
 							gameOver.getLocalBounds().top + gameOver.getLocalBounds().height/2.0f);
-	gameOver.setPosition(windowWidth/2.0f,windowHeight/2.0f);
+	gameOver.setPosition(windowWidth/2.0f,windowHeight/2.0f-100);
 
 	// define as opções de teclas durante o Game Over
 	keyOptions.setString("Press\nENTER to continue\nESC to exit");
@@ -66,7 +73,7 @@ int main(int argc, char **argv)
 	keyOptions.setFillColor(sf::Color::Yellow);
 	keyOptions.setOrigin(keyOptions.getLocalBounds().left + keyOptions.getLocalBounds().width/2.0f,
 							keyOptions.getLocalBounds().top + keyOptions.getLocalBounds().height);
-	keyOptions.setPosition(windowWidth/2.0f,windowHeight/2.0f + 2 * gameOver.getLocalBounds().height);
+	keyOptions.setPosition(windowWidth/2.0f,windowHeight/2.0f + gameOver.getLocalBounds().height);
 	
 	std::cout << "Carregou as fontes do jogo..." << std::endl;
 	
@@ -147,14 +154,18 @@ int main(int argc, char **argv)
 			bola.atualizar();
 			bastao.atualizar();
 		
-			// Atualiza o HUD
+			// Atualiza o scoreHUD
 			std::stringstream ss;
-			ss << "Score: " << score << " Vida: " << vida;
-			hud.setString(ss.str());
+			ss << "Score: " << score;
+			scoreHUD.setString(ss.str());
+			ss.str(std::string());
+			ss << " Vida: " << vida;
+			vidaHUD.setString(ss.str());
 		
 			// limpa o último frame
 			window.clear(Color(0, 0, 0, 255));
-			window.draw(hud);
+			window.draw(scoreHUD);
+			window.draw(vidaHUD);
 		
 			// tem menos do que 0 vidas?
 			if(vida<=0){
