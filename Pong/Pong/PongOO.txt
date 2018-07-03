@@ -1,1 +1,0 @@
-./Debug/main.cpp.o ./Debug/Input.cpp.o ./Debug/Draw.cpp.o ./Debug/HUD.cpp.o ./Debug/Engine.cpp.o ./Debug/Bastao.cpp.o ./Debug/Bola.cpp.o
