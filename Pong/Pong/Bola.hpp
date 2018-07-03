@@ -14,7 +14,7 @@ private:
 	Vector2f posicaoInicial;
 	Vector2f posicaoAtual;
 	// forma de bola
-	RectangleShape formaBola;
+	CircleShape formaBola;
 	// velocidades da bola
 	float velocidadeX = velocidadeIncial;
 	float velocidadeY = velocidadeIncial;
@@ -35,7 +35,7 @@ public:
 	FloatRect getPosicao();
 	
 	// informa a forma da figura
-	RectangleShape getForma();
+	CircleShape getForma();
 	
 	// aumenta a velocidade da bola
 	void aumentarVelocidade();

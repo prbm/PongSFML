@@ -9,7 +9,9 @@ Bola::Bola(float inicioX, float inicioY, Vector2u w)
 	posicaoInicial.x = posicaoAtual.x = inicioX;
 	posicaoInicial.y = posicaoAtual.y = inicioY;
 	
-	formaBola.setSize(sf::Vector2f(10, 10));
+    formaBola.setRadius(5);
+    formaBola.setPointCount(30);
+    formaBola.setFillColor(Color::White);
 	formaBola.setPosition(posicaoAtual);
     
     wSize = w;
@@ -21,7 +23,7 @@ FloatRect Bola::getPosicao(){
 	return formaBola.getGlobalBounds();
 }
 
-RectangleShape Bola::getForma(){
+CircleShape Bola::getForma(){
 	return formaBola;
 }
 
