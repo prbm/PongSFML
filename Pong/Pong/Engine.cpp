@@ -11,9 +11,10 @@ Engine::Engine()
 	resolucao.x = 800;
 	resolucao.y = 600;
 	
-	window.create(VideoMode(resolucao.x, resolucao.y), "Pong Game");
-
-    // centraliza a janela no meio da tela
+    // cria a tela de modo que não tenha resize
+	window.create(VideoMode(resolucao.x, resolucao.y), "Pong Game", Style::Titlebar | Style::Close);
+    
+     
     window.setPosition(Vector2i(VideoMode::getDesktopMode().width/2 - resolucao.x/2, 
                                 VideoMode::getDesktopMode().height/2 - resolucao.y/2));
                                 
