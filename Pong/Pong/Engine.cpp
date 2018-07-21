@@ -1,13 +1,9 @@
 #include "Engine.hpp"
-#include "GameState.h"
-//#include "Bola.hpp"
 
 Engine::Engine()
 {
 	// Define a resolução da tela, e cria uma janela e uma view SFML
 	Vector2f resolucao;
-//	resolucao.x = VideoMode::getDesktopMode().width;
-//	resolucao.y = VideoMode::getDesktopMode().height;
 	resolucao.x = 800;
 	resolucao.y = 600;
 	
@@ -27,7 +23,7 @@ Engine::Engine()
     
     
     // define o status do jogo 
-    gameState = GameState::state::RUNNING;
+    gameState = GameState::PLAYING;
 }
 
 void Engine::start(){

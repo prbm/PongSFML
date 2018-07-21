@@ -1,5 +1,5 @@
 #include "Engine.hpp"
-#include "GameState.h"
+
 
 void Engine::draw(){
 	// limpa o último frame
@@ -8,11 +8,11 @@ void Engine::draw(){
     window.draw(hud->getScore());
     window.draw(hud->getVida());
     
-    if(gameState == GameState::state::RUNNING){
+    if(gameState == GameState::PLAYING){
         bola->atualizar();
         bastao->atualizar();
     }
-    if(gameState == GameState::state::LOST){
+    if(gameState == GameState::LOST){
         window.draw(hud->getGameOver());
         window.draw(hud->getKeyOptions());
     }

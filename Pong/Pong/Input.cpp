@@ -1,5 +1,4 @@
 #include "Engine.hpp"
-#include "GameState.h"
 #include <iostream>
 
 //
@@ -16,17 +15,17 @@ void Engine::input(){
 		else if(event.type==Event::KeyPressed){
             // verifica se o jogo foi pausado
             if(Keyboard::isKeyPressed(Keyboard::P)){
-                if(gameState == GameState::state::PAUSED)
-                    gameState = GameState::state::RUNNING;
+                if(gameState == GameState::PAUSED)
+                    gameState = GameState::PLAYING;
                 else
-                    gameState = GameState::state::PAUSED;
+                    gameState = GameState::PAUSED;
             }
             // verifica se o jogador quer sair do jogo
             else if(Keyboard::isKeyPressed(Keyboard::Escape)){
                 window.close();
             }else if(Keyboard::isKeyPressed(Keyboard::Return)){
-                if(gameState == GameState::state::WON || gameState == GameState::state::LOST){
-                    gameState = GameState::state::RUNNING;
+                if(gameState == GameState::WON || gameState == GameState::LOST){
+                    gameState = GameState::PLAYING;
                     restart();
                 }
             }
@@ -34,7 +33,7 @@ void Engine::input(){
         }
     }// end POLL EVENT
     
-    if(gameState == GameState::state::RUNNING){
+    if(gameState == GameState::PLAYING){
         // identifica se está movendo o jogador
         if(Keyboard::isKeyPressed(Keyboard::A) || Keyboard::isKeyPressed(Keyboard::Left)){
             bastao->moverEsquerda();
@@ -68,7 +67,7 @@ void Engine::input(){
         }
         
         if(bola->getVida()<=0){
-            gameState = GameState::state::LOST;
+            gameState = GameState::LOST;
         }
-    } // end if(gameState == RUNNING)
+    } // end if(gameState == PLAYING)
 }

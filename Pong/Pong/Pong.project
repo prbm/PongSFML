@@ -16,7 +16,6 @@
     <File Name="Input.cpp"/>
     <File Name="HUD.hpp"/>
     <File Name="HUD.cpp"/>
-    <File Name="GameState.h"/>
     <File Name="Engine.hpp"/>
     <File Name="Engine.cpp"/>
     <File Name="main.cpp"/>
@@ -118,4 +117,6 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

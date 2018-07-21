@@ -25,6 +25,18 @@ private:
     int gameState;
     
 public:
+    // define os estados dos jogos
+    enum GameState{
+        PLAYING = 1,
+        PAUSED,
+        WON,
+        LOST,
+        UNINTIALIZED, 
+        SHOWING_SPLASH,
+        SHOWING_MENU,
+        EXITING        
+    };
+
     // declara o método que inicia o jogo
     void start();
     // declara o método que reinicia o jogo
