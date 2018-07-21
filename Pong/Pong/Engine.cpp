@@ -1,4 +1,7 @@
 #include "Engine.hpp"
+#include "SplashScreen.hpp"
+
+Engine::GameState Engine::gameState = GameState::UNINTIALIZED;
 
 Engine::Engine()
 {
@@ -23,7 +26,7 @@ Engine::Engine()
     
     
     // define o status do jogo 
-    gameState = GameState::PLAYING;
+    gameState = GameState::SHOWING_SPLASH ;
 }
 
 void Engine::start(){
@@ -37,18 +40,24 @@ void Engine::start(){
 		
 		input();
 //		update(dtSegundos);
-		draw();
+//		draw();
 	}
 }
 
 void Engine::restart(){
 	bastao->restaurarOriginal();
 	bola->restaurarOriginal();
-//    hud = new HUD(window.getSize());
     hud->setScore(bola->getScore());
     hud->setVida(bola->getVida());
     
     draw();
+}
+
+void Engine::mostrarSplashScreen(){
+    SplashScreen splashScreen;
+    splashScreen.mostrar(window);
+    // muda o status do jogo para jogando
+    gameState = GameState::PLAYING;
 }
 
 Engine::~Engine()

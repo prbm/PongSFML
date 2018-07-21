@@ -1,5 +1,7 @@
 #include "Engine.hpp"
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 //
 // Neste arquivo, vamos lidar com as ações do jogador
@@ -33,7 +35,13 @@ void Engine::input(){
         }
     }// end POLL EVENT
     
-    if(gameState == GameState::PLAYING){
+    if(gameState == GameState::SHOWING_SPLASH){
+        mostrarSplashScreen();
+        // show Splash Screen for 2.5 seconds
+        std::this_thread::sleep_for(std::chrono::milliseconds(2500));
+        //break;        
+    }
+    else if(gameState == GameState::PLAYING){
         // identifica se está movendo o jogador
         if(Keyboard::isKeyPressed(Keyboard::A) || Keyboard::isKeyPressed(Keyboard::Left)){
             bastao->moverEsquerda();
@@ -69,5 +77,8 @@ void Engine::input(){
         if(bola->getVida()<=0){
             gameState = GameState::LOST;
         }
+        
+        // atualiza a tela
+        draw();
     } // end if(gameState == PLAYING)
 }

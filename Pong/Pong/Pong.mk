@@ -60,7 +60,7 @@ AS       := as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Engine.cpp$(ObjectSuffix) $(IntermediateDirectory)/HUD.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bola.cpp$(ObjectSuffix) $(IntermediateDirectory)/Draw.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bastao.cpp$(ObjectSuffix) $(IntermediateDirectory)/Input.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Engine.cpp$(ObjectSuffix) $(IntermediateDirectory)/HUD.cpp$(ObjectSuffix) $(IntermediateDirectory)/SplashScreen.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bola.cpp$(ObjectSuffix) $(IntermediateDirectory)/Draw.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bastao.cpp$(ObjectSuffix) $(IntermediateDirectory)/Input.cpp$(ObjectSuffix) 
 
 
 
@@ -81,6 +81,7 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 PostBuild:
 	@echo Executing Post Build commands ...
 	cp DS-DIGIT.TTF Debug
+	cp -r images Debug
 	@echo Done
 
 MakeIntermediateDirs:
@@ -119,6 +120,14 @@ $(IntermediateDirectory)/HUD.cpp$(DependSuffix): HUD.cpp
 
 $(IntermediateDirectory)/HUD.cpp$(PreprocessSuffix): HUD.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/HUD.cpp$(PreprocessSuffix) HUD.cpp
+
+$(IntermediateDirectory)/SplashScreen.cpp$(ObjectSuffix): SplashScreen.cpp $(IntermediateDirectory)/SplashScreen.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/paulo/estudos/games/Pong/Pong/SplashScreen.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/SplashScreen.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/SplashScreen.cpp$(DependSuffix): SplashScreen.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/SplashScreen.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/SplashScreen.cpp$(DependSuffix) -MM SplashScreen.cpp
+
+$(IntermediateDirectory)/SplashScreen.cpp$(PreprocessSuffix): SplashScreen.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/SplashScreen.cpp$(PreprocessSuffix) SplashScreen.cpp
 
 $(IntermediateDirectory)/Bola.cpp$(ObjectSuffix): Bola.cpp $(IntermediateDirectory)/Bola.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/paulo/estudos/games/Pong/Pong/Bola.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Bola.cpp$(ObjectSuffix) $(IncludePath)

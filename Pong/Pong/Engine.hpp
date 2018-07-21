@@ -19,10 +19,11 @@ private:
 	void input();   // controle de entradas do jogador
 	void update(float dtSegundos);  // atualizar os personagens
 	void draw();    // desenha a tela
+    void mostrarSplashScreen();    // declara o método que exibe a tela de Splash Screen
+    
     Bola * bola;
     Bastao * bastao;
     HUD * hud;
-    int gameState;
     
 public:
     // define os estados dos jogos
@@ -36,11 +37,15 @@ public:
         SHOWING_MENU,
         EXITING        
     };
+    
+    // declara variável para armazenar o estado do jogo
+    static GameState gameState;
 
     // declara o método que inicia o jogo
     void start();
     // declara o método que reinicia o jogo
     void restart();
+
     
     Engine();
     ~Engine();
