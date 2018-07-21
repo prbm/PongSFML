@@ -1,5 +1,8 @@
 #ifndef BASTAO_HPP
 #define BASTAO_HPP
+
+#pragma once
+
 #include <SFML/Graphics.hpp>
 
 using namespace sf;

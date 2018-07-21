@@ -1,5 +1,8 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
+
+#pragma once
+
 #include <SFML/Graphics.hpp>
 #include "Bola.hpp"
 #include "Bastao.hpp"

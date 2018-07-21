@@ -1,5 +1,8 @@
 #ifndef HUD_HPP
 #define HUD_HPP
+
+#pragma once
+
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
