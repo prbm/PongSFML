@@ -13,8 +13,6 @@ private:
     // declara os campos da tela
     Text score;
     Text vida;
-    Text gameOver;
-    Text keyOptions;
     // declara a fonte a ser usada na tela
     Font font;
 
@@ -25,8 +23,6 @@ public:
     Text getScore();
     void setVida(int value);
     Text getVida();
-    Text getGameOver();
-    Text getKeyOptions();
 
     ~HUD();
 

@@ -21,6 +21,7 @@ Engine::Engine()
     bola = new Bola(window.getSize().x/2, 1, window.getSize());
     bastao = new Bastao(window.getSize().x/2, window.getSize().y - 20, window.getSize());
     hud = new HUD(window.getSize());
+    gameOver = new GameOver(window.getSize());
     hud->setScore(bola->getScore());
     hud->setVida(bola->getVida());
     

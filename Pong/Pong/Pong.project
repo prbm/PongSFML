@@ -8,6 +8,8 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="GameOver.cpp"/>
+    <File Name="GameOver.hpp"/>
     <File Name="SplashScreen.cpp"/>
     <File Name="SplashScreen.hpp"/>
     <File Name="Draw.cpp"/>

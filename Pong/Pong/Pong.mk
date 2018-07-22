@@ -60,7 +60,7 @@ AS       := as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Engine.cpp$(ObjectSuffix) $(IntermediateDirectory)/HUD.cpp$(ObjectSuffix) $(IntermediateDirectory)/SplashScreen.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bola.cpp$(ObjectSuffix) $(IntermediateDirectory)/Draw.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bastao.cpp$(ObjectSuffix) $(IntermediateDirectory)/Input.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Engine.cpp$(ObjectSuffix) $(IntermediateDirectory)/HUD.cpp$(ObjectSuffix) $(IntermediateDirectory)/GameOver.cpp$(ObjectSuffix) $(IntermediateDirectory)/Input.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bastao.cpp$(ObjectSuffix) $(IntermediateDirectory)/SplashScreen.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bola.cpp$(ObjectSuffix) $(IntermediateDirectory)/Draw.cpp$(ObjectSuffix) 
 
 
 
@@ -121,6 +121,30 @@ $(IntermediateDirectory)/HUD.cpp$(DependSuffix): HUD.cpp
 $(IntermediateDirectory)/HUD.cpp$(PreprocessSuffix): HUD.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/HUD.cpp$(PreprocessSuffix) HUD.cpp
 
+$(IntermediateDirectory)/GameOver.cpp$(ObjectSuffix): GameOver.cpp $(IntermediateDirectory)/GameOver.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/paulo/estudos/games/Pong/Pong/GameOver.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/GameOver.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/GameOver.cpp$(DependSuffix): GameOver.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/GameOver.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/GameOver.cpp$(DependSuffix) -MM GameOver.cpp
+
+$(IntermediateDirectory)/GameOver.cpp$(PreprocessSuffix): GameOver.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/GameOver.cpp$(PreprocessSuffix) GameOver.cpp
+
+$(IntermediateDirectory)/Input.cpp$(ObjectSuffix): Input.cpp $(IntermediateDirectory)/Input.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/paulo/estudos/games/Pong/Pong/Input.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Input.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Input.cpp$(DependSuffix): Input.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Input.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Input.cpp$(DependSuffix) -MM Input.cpp
+
+$(IntermediateDirectory)/Input.cpp$(PreprocessSuffix): Input.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Input.cpp$(PreprocessSuffix) Input.cpp
+
+$(IntermediateDirectory)/Bastao.cpp$(ObjectSuffix): Bastao.cpp $(IntermediateDirectory)/Bastao.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/paulo/estudos/games/Pong/Pong/Bastao.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Bastao.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Bastao.cpp$(DependSuffix): Bastao.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Bastao.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Bastao.cpp$(DependSuffix) -MM Bastao.cpp
+
+$(IntermediateDirectory)/Bastao.cpp$(PreprocessSuffix): Bastao.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Bastao.cpp$(PreprocessSuffix) Bastao.cpp
+
 $(IntermediateDirectory)/SplashScreen.cpp$(ObjectSuffix): SplashScreen.cpp $(IntermediateDirectory)/SplashScreen.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/paulo/estudos/games/Pong/Pong/SplashScreen.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/SplashScreen.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/SplashScreen.cpp$(DependSuffix): SplashScreen.cpp
@@ -144,22 +168,6 @@ $(IntermediateDirectory)/Draw.cpp$(DependSuffix): Draw.cpp
 
 $(IntermediateDirectory)/Draw.cpp$(PreprocessSuffix): Draw.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Draw.cpp$(PreprocessSuffix) Draw.cpp
-
-$(IntermediateDirectory)/Bastao.cpp$(ObjectSuffix): Bastao.cpp $(IntermediateDirectory)/Bastao.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/paulo/estudos/games/Pong/Pong/Bastao.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Bastao.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Bastao.cpp$(DependSuffix): Bastao.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Bastao.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Bastao.cpp$(DependSuffix) -MM Bastao.cpp
-
-$(IntermediateDirectory)/Bastao.cpp$(PreprocessSuffix): Bastao.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Bastao.cpp$(PreprocessSuffix) Bastao.cpp
-
-$(IntermediateDirectory)/Input.cpp$(ObjectSuffix): Input.cpp $(IntermediateDirectory)/Input.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/paulo/estudos/games/Pong/Pong/Input.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Input.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Input.cpp$(DependSuffix): Input.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Input.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Input.cpp$(DependSuffix) -MM Input.cpp
-
-$(IntermediateDirectory)/Input.cpp$(PreprocessSuffix): Input.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Input.cpp$(PreprocessSuffix) Input.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

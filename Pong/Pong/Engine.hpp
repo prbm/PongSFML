@@ -7,6 +7,7 @@
 #include "Bola.hpp"
 #include "Bastao.hpp"
 #include "HUD.hpp"
+#include "GameOver.hpp"
 
 using namespace sf;
 
@@ -24,6 +25,7 @@ private:
     Bola * bola;
     Bastao * bastao;
     HUD * hud;
+    GameOver * gameOver;
     
 public:
     // define os estados dos jogos
