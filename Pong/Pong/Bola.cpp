@@ -6,10 +6,20 @@ Bola::Bola()
 
 Bola::Bola(RenderWindow & rw)
 {
+    setSpriteFileName(); // define o nome da imagem
+    if(_image.loadFromFile(_filename)!=true){
+        std::cout << "Erro ao carregar arquivo " << _filename << std::endl;
+        return;
+    }
+    else
+    {
+        // define o contorno da imagem como sendo suave
+        _image.setSmooth(true);
+    }
+
     formaBola.setRadius(5);
-    formaBola.setPointCount(30);
-    formaBola.setFillColor(Color::White);
 	formaBola.setPosition(posicaoAtual);
+    formaBola.setTexture(&_image, false);
     
     // define a posição inicial da bola
     wSize = rw.getSize();
@@ -87,6 +97,17 @@ void Bola::aumentarScore(int i){
 
 int Bola::getScore(){
     return score;
+}
+
+std::string Bola::getSpriteFileName()
+{
+    return _filename;    
+}
+
+void Bola::setSpriteFileName()
+{
+    // tenta carregar a imagem 
+    _filename = "images/ball.png";    
 }
 
 

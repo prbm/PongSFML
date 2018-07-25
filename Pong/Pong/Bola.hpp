@@ -4,6 +4,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 using namespace sf;
 
@@ -27,6 +28,13 @@ private:
     // pontuação da bola
     int vidaInicial;
     int vida;
+    // define as informações da Sprite
+	sf::Texture _image;
+	std::string _filename;    
+    
+protected:
+    std::string getSpriteFileName();
+    void setSpriteFileName();
 	
 public:
     Bola();
