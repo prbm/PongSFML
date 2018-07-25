@@ -1,5 +1,6 @@
 #include "Engine.hpp"
 #include "SplashScreen.hpp"
+#include "SFML/Audio.hpp"
 
 Engine::GameState Engine::gameState = GameState::UNINTIALIZED;
 
@@ -32,6 +33,15 @@ Engine::Engine()
 
 void Engine::start(){
 
+    // define a música de background enquanto o jogo é jogado
+    sf::Music music;
+    if(!music.openFromFile("sounds/TheForestAwakes.ogg")){
+        std::cout << "Erro ao carregar o arquivo de áudio" << std::endl;
+    }
+    music.setVolume(10); // define o volume em 5% do total
+    music.setLoop(true); // toca em loop
+    music.play();        // toca a música
+    
 	while(window.isOpen()){
 		// reinicia o relógio e guarda esse valor em dt
 //		Time dt = relogio.restart();

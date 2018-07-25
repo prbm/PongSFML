@@ -45,6 +45,7 @@
         <Library Value="sfml-graphics"/>
         <Library Value="sfml-window"/>
         <Library Value="sfml-system"/>
+        <Library Value="sfml-audio"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
@@ -61,6 +62,7 @@
       <PostBuild>
         <Command Enabled="yes">cp DS-DIGIT.TTF Debug</Command>
         <Command Enabled="yes">cp -r images Debug</Command>
+        <Command Enabled="yes">cp -r sounds Debug</Command>
       </PostBuild>
       <CustomBuild Enabled="no">
         <RebuildCommand/>

@@ -39,8 +39,8 @@ LinkOptions            :=
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)/usr/include/SFML 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := $(LibrarySwitch)sfml-graphics $(LibrarySwitch)sfml-window $(LibrarySwitch)sfml-system 
-ArLibs                 :=  "sfml-graphics" "sfml-window" "sfml-system" 
+Libs                   := $(LibrarySwitch)sfml-graphics $(LibrarySwitch)sfml-window $(LibrarySwitch)sfml-system $(LibrarySwitch)sfml-audio 
+ArLibs                 :=  "sfml-graphics" "sfml-window" "sfml-system" "sfml-audio" 
 LibPath                := $(LibraryPathSwitch). 
 
 ##
