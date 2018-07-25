@@ -18,10 +18,10 @@ Engine::Engine()
                                 VideoMode::getDesktopMode().height/2 - resolucao.y/2));
                                 
     // cria os objetos que serão usados no jogo
-    bola = new Bola(window.getSize().x/2, 1, window.getSize());
-    bastao = new Bastao(window.getSize().x/2, window.getSize().y - 20, window.getSize());
-    hud = new HUD(window.getSize());
-    gameOver = new GameOver(window.getSize());
+    bola = new Bola(window);
+    bastao = new Bastao(window);
+    hud = new HUD(window);
+    gameOver = new GameOver(window);
     hud->setScore(bola->getScore());
     hud->setVida(bola->getVida());
     

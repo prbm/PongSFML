@@ -32,7 +32,7 @@ public:
     Bola();
 
 	// definicao do construtor
-	Bola(float inicioX, float inicioY, Vector2u w);
+    Bola(RenderWindow & rw);
 	
 	// informa posicao do retângulo
 	FloatRect getPosicao();

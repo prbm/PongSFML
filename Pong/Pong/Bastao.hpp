@@ -19,10 +19,18 @@ private:
 	float velocidadeBastao = 0.3f;
     // define o tamanho da tela
     Vector2u wSize;
+    // define as informações da Sprite
+	sf::Texture _image;
+	std::string _filename;
+
+protected:
+    // informa a imagem da Sprite
+    std::string getSpriteFileName();
+    void setSpriteFileName();
 
 public:
 	// declaracao do construtor
-	Bastao(float inicioX, float inicioY, Vector2u w);
+	Bastao(RenderWindow & rw);
 	// informa posicao da figura
 	FloatRect getPosicao();
 	// informa a forma da figura

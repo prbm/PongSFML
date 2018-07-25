@@ -1,7 +1,7 @@
 #include "HUD.hpp"
 #include <sstream>
 
-HUD::HUD(Vector2u w)
+HUD::HUD(RenderWindow & rw)
 {
     // carrega a fonte
     font.loadFromFile("DS-DIGIT.TTF");
@@ -18,8 +18,7 @@ HUD::HUD(Vector2u w)
 	vida.setCharacterSize(40);
 	vida.setString("Vida: XX");
 	vida.setFillColor(sf::Color::Blue);
-	vida.setPosition(w.x - vida.getLocalBounds().width - 10, 1);
-
+	vida.setPosition(rw.getSize().x - vida.getLocalBounds().width - 10, 1);
 }
 
 void HUD::setScore(int value){

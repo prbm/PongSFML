@@ -1,7 +1,7 @@
 #include "GameOver.hpp"
 #include <sstream>
 
-GameOver::GameOver(Vector2u w)
+GameOver::GameOver(RenderWindow & rw)
 {
     // carrega a fonte
     font.loadFromFile("DS-DIGIT.TTF");
@@ -14,7 +14,7 @@ GameOver::GameOver(Vector2u w)
 	// centraliza o texto na tela
 	gameOver.setOrigin(gameOver.getLocalBounds().left + gameOver.getLocalBounds().width/2.0f, 
 							gameOver.getLocalBounds().top + gameOver.getLocalBounds().height/2.0f);
-	gameOver.setPosition(w.x/2.0f,w.y/2.0f-100);
+	gameOver.setPosition(rw.getSize().x/2.0f,rw.getSize().y/2.0f-100);
 
 	// define as opções de teclas durante o Game Over
 	keyOptions.setString("ENTER -> continue\nESC -> exit");
@@ -23,7 +23,8 @@ GameOver::GameOver(Vector2u w)
 	keyOptions.setFillColor(sf::Color::Yellow);
 	keyOptions.setOrigin(keyOptions.getLocalBounds().left + keyOptions.getLocalBounds().width/2.0f,
 							keyOptions.getLocalBounds().top + keyOptions.getLocalBounds().height);
-	keyOptions.setPosition(w.x/2.0f,w.y/2.0f + gameOver.getLocalBounds().height);    
+	keyOptions.setPosition(rw.getSize().x/2.0f,
+                                    rw.getSize().y/2.0f + gameOver.getLocalBounds().height);    
 }
 
 Text GameOver::getGameOver(){

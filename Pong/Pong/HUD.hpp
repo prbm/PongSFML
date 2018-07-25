@@ -17,7 +17,7 @@ private:
     Font font;
 
 public:
-    HUD(Vector2u w);
+    HUD(RenderWindow & rw);
     // define as propriedades da HUD
     void setScore(int value);
     Text getScore();

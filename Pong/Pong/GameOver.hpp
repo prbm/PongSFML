@@ -10,7 +10,7 @@ using namespace sf;
 class GameOver
 {
 public:
-    GameOver(Vector2u w);
+    GameOver(RenderWindow & rw);
     ~GameOver();
 
     Text getGameOver();

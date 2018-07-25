@@ -4,17 +4,18 @@ Bola::Bola()
 {
 }
 
-Bola::Bola(float inicioX, float inicioY, Vector2u w)
+Bola::Bola(RenderWindow & rw)
 {
-	posicaoInicial.x = posicaoAtual.x = inicioX;
-	posicaoInicial.y = posicaoAtual.y = inicioY;
-	
     formaBola.setRadius(5);
     formaBola.setPointCount(30);
     formaBola.setFillColor(Color::White);
 	formaBola.setPosition(posicaoAtual);
     
-    wSize = w;
+    // define a posição inicial da bola
+    wSize = rw.getSize();
+	posicaoInicial.x = posicaoAtual.x = wSize.x/2;
+	posicaoInicial.y = posicaoAtual.y = formaBola.getRadius() + 10;
+
     score = scoreInicial = 0;
     vida = vidaInicial = 3;
 }

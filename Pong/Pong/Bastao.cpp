@@ -1,20 +1,39 @@
 #include "Bastao.hpp"
+#include <iostream>
 
 Bastao::Bastao()
 {
 }
 
-Bastao::Bastao(float inicioX, float inicioY, Vector2u w)
-{	
-    posicao.x = inicioX;
-	posicao.y = inicioY;
-	
-	posicaoInicial = posicao;
+Bastao::Bastao(RenderWindow & rw) 
+{
+    setSpriteFileName(); // define o nome da imagem
+    if(_image.loadFromFile(_filename)!=true){
+        std::cout << "Erro ao carregar arquivo " << _filename << std::endl;
+        return;
+    }
+    else
+    {
+        // define o contorno da imagem como sendo suave
+        _image.setSmooth(true);
+    }
+    formaBastao.setTexture(&_image);
 
-	formaBastao.setSize(sf::Vector2f(50,5));
+    // define o tamanho do bastão
+    formaBastao.setSize(sf::Vector2f(50,10));
+
+    // define a posição inicial do bastão
+    wSize = rw.getSize();
+    posicao.x = wSize.x/2;
+    if((formaBastao.getSize().y * 1.5 ) > 15){
+        posicao.y = wSize.y - (formaBastao.getSize().y * 1.5 ); 
+    }
+    else{
+        posicao.y = wSize.y - 15; 
+    }
+        
 	formaBastao.setPosition(posicao);
-    
-    wSize = w;
+    posicaoInicial = posicao;
 }
 
 FloatRect Bastao::getPosicao(){
@@ -42,6 +61,15 @@ void Bastao::atualizar(){
 void Bastao::restaurarOriginal(){
 	posicao = posicaoInicial;
 	atualizar();
+}
+
+std::string Bastao::getSpriteFileName(){
+    return _filename;
+}
+
+void Bastao::setSpriteFileName(){
+    // tenta carregar a imagem 
+    _filename = "images/paddle.png";    
 }
 
 Bastao::~Bastao()
