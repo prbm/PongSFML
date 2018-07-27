@@ -8,6 +8,11 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="SoundProvider.hpp"/>
+    <File Name="SoundProvider.cpp"/>
+    <File Name="AudioService.hpp"/>
+    <File Name="AudioService.cpp"/>
+    <File Name="IAudioProvider.h"/>
     <File Name="GameOver.cpp"/>
     <File Name="GameOver.hpp"/>
     <File Name="SplashScreen.cpp"/>

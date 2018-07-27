@@ -1,6 +1,8 @@
 #include "Engine.hpp"
 #include "SplashScreen.hpp"
 #include "SFML/Audio.hpp"
+#include "SoundProvider.hpp"
+#include "AudioService.hpp"
 
 Engine::GameState Engine::gameState = GameState::UNINTIALIZED;
 
@@ -33,15 +35,9 @@ Engine::Engine()
 
 void Engine::start(){
 
-    // define a música de background enquanto o jogo é jogado
-    sf::Music music;
-    if(!music.openFromFile("sounds/TheForestAwakes.ogg")){
-        std::cout << "Erro ao carregar o arquivo de áudio" << std::endl;
-    }
-    music.setVolume(10); // define o volume em 5% do total
-    music.setLoop(true); // toca em loop
-    music.play();        // toca a música
-    
+	SoundProvider soundProvider;
+	AudioService::registerAudioService(&soundProvider);
+
 	while(window.isOpen()){
 		// reinicia o relógio e guarda esse valor em dt
 //		Time dt = relogio.restart();
@@ -50,9 +46,35 @@ void Engine::start(){
 //		float dtSegundos = dt.asSeconds();
 		
 		input();
+
+		// controla o áudio sendo executado durante o jogo
+		switch (gameState)
+		{
+			case GameState::SHOWING_SPLASH:
+				// a fazer, tocar a música de fundo para a splash screen
+				break;
+			case GameState::WON:
+			case GameState::LOST:
+				// a fazer, tocar a música de fundo para a splash screen
+				break;
+			case GameState::PLAYING:
+				// interrompe o efeito sonoro se ele estiver ativo
+				if (AudioService::getAudio()->getEffetStatus() != sf::Music::Status::Stopped)
+					AudioService::getAudio()->stopAudio();
+
+				// ativa a música de fundo e a mantém tocando
+				if (AudioService::getAudio()->getMusicStatus() != sf::Sound::Status::Playing)
+					AudioService::getAudio()->playMusic("sounds/TheForestAwakes.ogg", true);
+
+				break;
+			default:
+				break;
+		}
+
 //		update(dtSegundos);
 //		draw();
 	}
+
 }
 
 void Engine::restart(){
