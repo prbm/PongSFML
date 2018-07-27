@@ -1,8 +1,5 @@
 #include "Engine.hpp"
 #include "SplashScreen.hpp"
-#include "SFML/Audio.hpp"
-#include "SoundProvider.hpp"
-#include "AudioService.hpp"
 
 Engine::GameState Engine::gameState = GameState::UNINTIALIZED;
 
@@ -35,8 +32,9 @@ Engine::Engine()
 
 void Engine::start(){
 
-	SoundProvider soundProvider;
-	AudioService::registerAudioService(&soundProvider);
+    // inicia o sistema de áudio
+    SoundProvider soundProvider;
+    AudioService::registerAudioService(&soundProvider);
 
 	while(window.isOpen()){
 		// reinicia o relógio e guarda esse valor em dt
@@ -53,14 +51,15 @@ void Engine::start(){
 			case GameState::SHOWING_SPLASH:
 				// a fazer, tocar a música de fundo para a splash screen
 				break;
-			case GameState::WON:
-			case GameState::LOST:
-				// a fazer, tocar a música de fundo para a splash screen
-				break;
+			case GameState::SHOWING_GAME_OVER:
+				// ativa a música de fundo e a mantém tocando
+				if (AudioService::getAudio()->getMusicStatus() == sf::Sound::Status::Playing)
+					AudioService::getAudio()->stopMusic();
+                break;
 			case GameState::PLAYING:
 				// interrompe o efeito sonoro se ele estiver ativo
 				if (AudioService::getAudio()->getEffetStatus() != sf::Music::Status::Stopped)
-					AudioService::getAudio()->stopAudio();
+					AudioService::getAudio()->stopEffect();
 
 				// ativa a música de fundo e a mantém tocando
 				if (AudioService::getAudio()->getMusicStatus() != sf::Sound::Status::Playing)

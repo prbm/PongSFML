@@ -16,7 +16,7 @@ void Engine::draw(){
         window.draw(bastao->getForma());
 
     }
-    if(gameState == GameState::LOST){
+    if(gameState == GameState::SHOWING_GAME_OVER){
         window.draw(gameOver->getGameOver());
         window.draw(gameOver->getKeyOptions());
     }

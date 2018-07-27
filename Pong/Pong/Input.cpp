@@ -26,7 +26,7 @@ void Engine::input(){
             else if(Keyboard::isKeyPressed(Keyboard::Escape)){
                 window.close();
             }else if(Keyboard::isKeyPressed(Keyboard::Return)){
-                if(gameState == GameState::WON || gameState == GameState::LOST){
+                if(gameState == GameState::SHOWING_GAME_OVER){
                     gameState = GameState::PLAYING;
                     restart();
                 }
@@ -75,7 +75,12 @@ void Engine::input(){
         }
         
         if(bola->getVida()<=0){
-            gameState = GameState::LOST;
+            gameState = GameState::SHOWING_GAME_OVER;
+			// interrompe o efeito sonoro se ele estiver ativo
+			if (AudioService::getAudio()->getEffetStatus() != sf::Music::Status::Playing){
+                AudioService::getAudio()->stopMusic();
+                AudioService::getAudio()->playEffect("sounds/boom.wav");            
+            }
         }
         
         // atualiza a tela

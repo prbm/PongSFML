@@ -8,6 +8,9 @@
 #include "Bastao.hpp"
 #include "HUD.hpp"
 #include "GameOver.hpp"
+#include "SFML/Audio.hpp"
+#include "SoundProvider.hpp"
+#include "AudioService.hpp"
 
 using namespace sf;
 
@@ -32,16 +35,18 @@ public:
     enum GameState{
         PLAYING = 1,
         PAUSED,
-        WON,
-        LOST,
+//        LOST,
+//        WON,
         UNINTIALIZED, 
         SHOWING_SPLASH,
         SHOWING_MENU,
+        SHOWING_GAME_OVER,
         EXITING        
     };
     
     // declara variável para armazenar o estado do jogo
-    static GameState gameState;
+    static GameState     gameState;
+    static SoundProvider soundProvider;
 
     // declara o método que inicia o jogo
     void start();

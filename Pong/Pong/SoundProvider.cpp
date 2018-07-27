@@ -49,12 +49,19 @@ void SoundProvider::playMusic(std::string filename, bool loop) {
 	_music.play();
 }
 
-void SoundProvider::stopAudio() {
-	if (_music.getStatus() == Sound::Playing)
-		_music.stop();
-
+void SoundProvider::stopEffect(){
 	if (_effect.getStatus() == Sound::Playing)
 		_effect.stop();
+}
+
+void SoundProvider::stopMusic(){
+	if (_music.getStatus() == Sound::Playing)
+		_music.stop();
+}
+
+void SoundProvider::stopAudio() {
+    stopEffect();
+    stopMusic();
 }
 
 Music::Status SoundProvider::getEffetStatus() {

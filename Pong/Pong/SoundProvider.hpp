@@ -12,6 +12,8 @@ public:
 
 	void playEffect(std::string filename);
 	void playMusic(std::string filename, bool loop);
+	void stopEffect();
+	void stopMusic();
 	void stopAudio();
 
 	Music::Status getEffetStatus();
