@@ -33,7 +33,7 @@ private:
     int vidaInicial;
     int vida;
     // nome do jogador
-    string nome;
+    std::string nome;
 };
 
 #endif // PLAYER_HPP
