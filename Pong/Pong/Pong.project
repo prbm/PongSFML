@@ -8,6 +8,8 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="Player.cpp"/>
+    <File Name="Player.hpp"/>
     <File Name="SoundProvider.hpp"/>
     <File Name="SoundProvider.cpp"/>
     <File Name="AudioService.hpp"/>

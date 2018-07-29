@@ -26,8 +26,6 @@ Bola::Bola(RenderWindow & rw)
 	posicaoInicial.x = posicaoAtual.x = wSize.x/2;
 	posicaoInicial.y = posicaoAtual.y = formaBola.getRadius() + 10;
 
-    score = scoreInicial = 0;
-    vida = vidaInicial = 3;
 }
 
 FloatRect Bola::getPosicao(){
@@ -71,32 +69,12 @@ void Bola::atualizar(){
 void Bola::restaurarOriginal(){
 	posicaoAtual = posicaoInicial;
 	velocidadeX = velocidadeY = velocidadeIncial;
-    score = scoreInicial;
-    vida = vidaInicial;
 	atualizar();
 }
 
 void Bola::restaurarPosicaoOriginal(){
 	posicaoAtual = posicaoInicial;
 	atualizar();
-}
-
-// atualiza o número de vidas da bola
-void Bola::diminuirVida(int i){
-    vida = vida - i;
-}
-
-int Bola::getVida(){
-    return vida;
-}
-
-// atualiza o score
-void Bola::aumentarScore(int i){
-    score = score + i;
-}
-
-int Bola::getScore(){
-    return score;
 }
 
 std::string Bola::getSpriteFileName()

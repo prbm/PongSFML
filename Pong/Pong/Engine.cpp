@@ -21,9 +21,10 @@ Engine::Engine()
     bola = new Bola(window);
     bastao = new Bastao(window);
     hud = new HUD(window);
+    player = new Player();
     gameOver = new GameOver(window);
-    hud->setScore(bola->getScore());
-    hud->setVida(bola->getVida());
+    hud->setScore(player->getScore());
+    hud->setVida(player->getVida());
     
     
     // define o status do jogo 
@@ -79,8 +80,9 @@ void Engine::start(){
 void Engine::restart(){
 	bastao->restaurarOriginal();
 	bola->restaurarOriginal();
-    hud->setScore(bola->getScore());
-    hud->setVida(bola->getVida());
+    player->restaurarOriginal();
+    hud->setScore(player->getScore());
+    hud->setVida(player->getVida());
     
     draw();
 }

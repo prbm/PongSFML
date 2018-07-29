@@ -11,6 +11,7 @@
 #include "SFML/Audio.hpp"
 #include "SoundProvider.hpp"
 #include "AudioService.hpp"
+#include "Player.hpp"
 
 using namespace sf;
 
@@ -29,14 +30,13 @@ private:
     Bastao * bastao;
     HUD * hud;
     GameOver * gameOver;
+    Player * player;
     
 public:
     // define os estados dos jogos
     enum GameState{
         PLAYING = 1,
         PAUSED,
-//        LOST,
-//        WON,
         UNINTIALIZED, 
         SHOWING_SPLASH,
         SHOWING_MENU,

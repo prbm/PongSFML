@@ -22,12 +22,6 @@ private:
 	// velocidades da bola
 	float velocidadeX = velocidadeIncial;
 	float velocidadeY = velocidadeIncial;
-    // score da bola
-    int scoreInicial;
-    int score;
-    // pontuação da bola
-    int vidaInicial;
-    int vida;
     // define as informações da Sprite
 	sf::Texture _image;
 	std::string _filename;    
@@ -69,14 +63,6 @@ public:
 	// restaurar ao estado original
 	void restaurarOriginal();
 	void restaurarPosicaoOriginal();
-    
-    // atualiza o número de vidas da bola
-    void diminuirVida(int i);
-    int getVida();
-
-    // atualiza o score
-    void aumentarScore(int i);
-    int getScore();
     
     ~Bola();
 

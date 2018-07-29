@@ -53,16 +53,16 @@ void Engine::input(){
         // tocou o fundo da janela?
         if(bola->getPosicao().top > window.getSize().y){
             bola->rebateuFundo();   // reverte  direção
-            bola->diminuirVida(1);  // remove uma vida da bola
+            player->diminuirVida(1);  // remove uma vida da bola
             bola->restaurarPosicaoOriginal(); // restaura a bola para a posição original
-            hud->setVida(bola->getVida());    // atualiza o vida na HUD
+            hud->setVida(player->getVida());    // atualiza o vida na HUD
         }
         // tocou o topo?
         if(bola->getPosicao().top < 0){
             bola->rebateuBastaoOuTopo();  // rebateu no bastão ou no topo
-            bola->aumentarScore(1);       // adiciona um ponto ao score
-            hud->setScore(bola->getScore());   // atualiza o score na HUD
-            if(bola->getScore()%5==0)          // aumenta a velocidade da bola a cada cinco pontos
+            player->aumentarScore(1);       // adiciona um ponto ao score
+            hud->setScore(player->getScore());   // atualiza o score na HUD
+            if(player->getScore()%5==0)          // aumenta a velocidade da bola a cada cinco pontos
                 bola->aumentarVelocidade();
         }
         // a bola bateu em um dos lados?
@@ -74,7 +74,7 @@ void Engine::input(){
             bola->rebateuBastaoOuTopo();
         }
         
-        if(bola->getVida()<=0){
+        if(player->getVida()<=0){
             gameState = GameState::SHOWING_GAME_OVER;
 			// interrompe o efeito sonoro se ele estiver ativo
 			if (AudioService::getAudio()->getEffetStatus() != sf::Music::Status::Playing){
